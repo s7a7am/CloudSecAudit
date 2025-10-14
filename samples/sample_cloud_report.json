@@ -1,0 +1,26 @@
+{
+  "S3": {
+    "Public Buckets": [],
+    "Error": "Unable to locate credentials"
+  },
+  "EC2": {
+    "Open Security Groups": [
+      "Error: Unable to locate credentials"
+    ]
+  },
+  "IAM": {
+    "Users without MFA": [
+      "Error: Unable to locate credentials"
+    ]
+  },
+  "RDS": {
+    "Public RDS Instances": [
+      "Error: Unable to locate credentials"
+    ]
+  },
+  "Lambda": {
+    "Risky Lambda Functions": [
+      "Error: Unable to locate credentials"
+    ]
+  }
+}

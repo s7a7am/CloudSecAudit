@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cloud Security Audit Dashboard</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 20px; background: #f5f6fa; }
+h1 { text-align: center; color: #2f3640; }
+.cards { display: flex; justify-content: space-around; margin-bottom: 30px; }
+.card { background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center; width: 18%; }
+.card h2 { margin: 10px 0; }
+table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
+th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+th { background-color: #2f3640; color: white; }
+tr:nth-child(even) { background-color: #f2f2f2; }
+.risk { color: red; font-weight: bold; }
+.safe { color: green; font-weight: bold; }
+button { background-color: #2f3640; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin-bottom: 20px; }
+button:hover { background-color: #40739e; }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+
+<h1>Cloud Security Audit Dashboard</h1>
+<p style="text-align:center;">Generated on: 2025-10-15 01:20:54</p>
+
+<div style="text-align:center;">
+  <button id="downloadPdf">Download PDF</button>
+</div>
+
+<div id="reportContent">
+<div class="cards">
+    <div class="card"><h2>S3</h2><p>Public Buckets</p><h2>0</h2></div>
+    <div class="card"><h2>EC2</h2><p>Open Security Groups</p><h2>1</h2></div>
+    <div class="card"><h2>IAM</h2><p>Users without MFA</p><h2>1</h2></div>
+    <div class="card"><h2>RDS</h2><p>Public Instances</p><h2>1</h2></div>
+    <div class="card"><h2>Lambda</h2><p>Risky Roles</p><h2>1</h2></div>
+</div>
+
+<h2>S3 Buckets</h2>
+<table>
+<tr><th>Bucket Name</th><th>Status</th></tr>
+<tr><td colspan='2' class='safe'>No public buckets</td></tr></table><h2>EC2 Security Groups</h2><table><tr><th>Security Group</th><th>Status</th></tr><tr><td>Error: Unable to locate credentials</td><td class='risk'>Open to 0.0.0.0/0</td></tr><h2>IAM Users without MFA</h2><table><tr><th>User</th><th>Status</th></tr><tr><td>Error: Unable to locate credentials</td><td class='risk'>No MFA</td></tr><h2>Public RDS Instances</h2><table><tr><th>Instance</th><th>Status</th></tr><tr><td>Error: Unable to locate credentials</td><td class='risk'>Public</td></tr><h2>Risky Lambda Functions</h2><table><tr><th>Function</th><th>Status</th></tr><tr><td>Error: Unable to locate credentials</td><td class='risk'>Risky Role</td></tr></table></div>
+<script>
+document.getElementById("downloadPdf").addEventListener("click", function() {
+    var element = document.getElementById("reportContent");
+    var opt = {
+      margin: 0.5,
+      filename: 'Cloud_Security_Audit_Report.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+    html2pdf().set(opt).from(element).save();
+});
+</script>
+
+</body>
+</html>
